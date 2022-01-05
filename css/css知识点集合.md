@@ -107,16 +107,15 @@ XXX {
 }
 ```
 ## 3.Flex 布局
-```css
+
 /**flex 布局默认存在两条轴*/
 display: flex
-/**在父元素的属性*/
+### 在父元素的属性
+```css
 定义主轴的排序方式：
 flex-direction: row | row-reverse | column | cloumn-reverse;
-
 定义主轴子元素的排列方式：
 justify-content: flex-end | flex-start | space-between | space-around;
-
 定义侧轴的排列方式：
 (元素不换行的情况下)
 align-items: flex-end | flex-end | center | stretch
@@ -126,18 +125,32 @@ align-content: flex-end | flex-end | center | stretch | space-between | space-ar
 flex-warp: no-warp | warp
 // 复合写法
 flex-flow: flex-direction  justify-content
-
-定义在子元素的身上
+```
+### 定义在内部的子元素的身上
+```css
 order: number 越小越靠前
 align-self: 单个子元素的排列方式
 
-flex: 1 // 是一种复合写法
-flex-shrink: 
-flex-grow:
+flex: 1 // 是一种复合写法（1，1，0%）（grow, shrink, basis）
+定义在分配多余空间之前，项目占据的主轴空间，根据这个属性计算剩余的空间
+就是按照他的占用情况来计算有多少剩余空间，剩余空间会被flex-shrink、flex-grow所作用
 flex-basis: 
-
+剩余空间不够时，定义项目缩小比例，必须是空间不够的情况下才会生效，默认是一
+flex-shrink: number
+剩余空间存在时，定义项目上放大比例（在宽度上）必须是有剩余空间的时候才会生效，默认是0
+flex-grow: number 
 ```
+
 ## 4.BFC模型
+BFC是一块独立的渲染区域，内部的元素不会影响外部，外部也不会影响到内部
+
+触发BFC的条件是：
+1. html根标签
+2. overflow: 不是 visiable
+3. position: absolution fixed
+4. float: 不为none
+5. display: flow-root 、flex、inline-block
+
 
 
 ## 5.实现三角形
