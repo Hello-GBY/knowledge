@@ -1,5 +1,5 @@
 {
-  "name": "webpack",
+  "name": "webpack 原理",
   "version": "1.0.0",
   "description": "webpack 原理",
   "main": "index.js",
@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^5.69.1"
+  }
 }
