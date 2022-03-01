@@ -115,7 +115,7 @@ display: flex
 定义主轴的排序方式：
 flex-direction: row | row-reverse | column | cloumn-reverse;
 定义主轴子元素的排列方式：
-justify-content: flex-end | flex-start | space-between | space-around;
+justify-content: flex-end | flex-start | space-between | space-around | center |;
 定义侧轴的排列方式：
 (元素不换行的情况下)
 align-items: flex-end | flex-end | center | stretch
@@ -143,7 +143,10 @@ flex-grow: number
 
 ## 4.BFC模型
 BFC是一块独立的渲染区域，内部的元素不会影响外部，外部也不会影响到内部
-
+BFC渲染规则：
+  1. 内部元素在垂直方向上一个接着一个排列
+  2. 相邻内部元素margin 不会重叠
+  3. 内部浮动元素不会塌陷
 触发BFC的条件是：
 1. html根标签
 2. overflow: 不是 visiable
@@ -152,10 +155,9 @@ BFC是一块独立的渲染区域，内部的元素不会影响外部，外部�
 5. display: flow-root 、flex、inline-block
 
 
-
 ## 5.实现三角形
 
-## 6. Postion几种用法对应的特性
+## 6. Position几种用法对应的特性
 
 ## 7.盒模型
 
@@ -164,3 +166,9 @@ BFC是一块独立的渲染区域，内部的元素不会影响外部，外部�
 ## 9.transition、transform、translate
 
 ## 10.提高动画的渲染性能
+
+
+## 11. show 和display的区别
+
+
+## 12. css清除浮动
