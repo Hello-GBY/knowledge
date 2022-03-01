@@ -158,7 +158,14 @@ BFC渲染规则：
 ## 5.实现三角形
 
 ## 6. Position几种用法对应的特性
-
+1. static 
+   默认值、没有定位、正常文档流 忽略 top left... z-index 声明
+2. relative
+   相对定位，相对于自身正常位置进行定位  通过 top left z-index 调整层级
+3. absolution
+   绝对定位，相对于第一个不是static 定位的父元素进行定位，  通过 top left z-index 调整层级
+4. fixed
+   固定定位，相对与浏览器窗口进行定位，  通过 top left z-index 调整层级
 ## 7.盒模型
 
 ## 8.响应式布局方案
