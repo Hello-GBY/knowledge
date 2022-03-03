@@ -214,6 +214,4 @@ Function
 # JQuery实现链式调用的原理是什么
 #  instanceof的实现原理
 # new的实现原理
-
-
 # 如何实现继承
