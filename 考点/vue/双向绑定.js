@@ -32,6 +32,22 @@ class Watcher {
   }
 }
 
+// 数据劫持
+let obj = {}
+Object.defineProperty(obj,"name", {
+  configurable: true,
+  enumerable: true,
+  set(val) {
+    console.log('赋值了obj: ', val);
 
+  },
+  get() {
+    return value
+  }
+})
 
-// 订阅者dom元素
+/**
+ * 知识点：
+ * 订阅者相当于dom元素
+ * /
+
