@@ -3,7 +3,7 @@
  */
 
 // 收集 订阅 / 发布
-class Dep () {
+class Dep {
   constructor () {
     this.subs = []
   }
@@ -14,9 +14,7 @@ class Dep () {
   
   // 发布订阅 （重新赋值的时候 重新渲染视图）
   notify() {
-    this.subs.forEach(element => {
-      element.
-    });
+    this.subs.forEach(element => {});
   }
 
 }
