@@ -38,3 +38,33 @@ history 原理：
 https://www.cnblogs.com/tugenhua0707/p/10859214.html
 https://zhuanlan.zhihu.com/p/337073166
 https://juejin.cn/post/6844904151206330375#heading-3
+
+# 动态路由传参
+1. params 需要 name 和路由配置
+   ```js
+    // 路由
+    {
+        path: "/test/:id/:name",
+        name: "test",
+        component: Home,
+    }
+
+    this.router.push({
+        name: '',
+        params: {
+
+        }
+    })
+
+    // 地址
+    http://localhost:8080/test/50
+   ```
+1. query 是通过 path
+   ```js
+    this.router.push({
+        name: '',
+        query: {
+            id： 50
+        }
+    })
+   ```
