@@ -40,7 +40,7 @@ https://zhuanlan.zhihu.com/p/337073166
 https://juejin.cn/post/6844904151206330375#heading-3
 
 # 动态路由传参
-1. params 需要 name 和路由配置
+   1. params 需要 name 和路由配置
    ```js
     // 路由
     {
@@ -56,15 +56,15 @@ https://juejin.cn/post/6844904151206330375#heading-3
         }
     })
 
-    // 地址
-    http://localhost:8080/test/50
+    // 地址  http://localhost:8080/test/50
    ```
-1. query 是通过 path
+   1. query 是通过 path
    ```js
     this.router.push({
-        name: '',
+        path: '/test',
         query: {
             id： 50
         }
     })
+    // 地址 http://localhost:8080/test?id=50
    ```
