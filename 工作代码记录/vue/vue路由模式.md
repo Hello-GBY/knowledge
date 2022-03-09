@@ -23,9 +23,13 @@ history 适合对外链接展示
 hash 原理：
 ```js
 
-window.onhashchange = function () {
-    // 更新dom
+function hashChangeUrl () {
+    // 跟新dom
 }
+window.addEventListener('load', hashChangeUrl, false);
+// 监听hashchange事件
+window.addEventListener('hashchange', hashChangeUrl, false);
+
 // 触发哈希
 location.href = 'https://www.baidu.com/#/aa';
 location.href = 'https://www.baidu.com/#/aa/qwe';
@@ -34,10 +38,15 @@ location.href = 'https://www.baidu.com/#/aa/qwe';
 history 原理：
 ```js
 
+    window.addEventListener('popstate', (e) => {
+
+    })
+
+history.pushState({id: 1},123,"https://www.cnblogs.com/tugenhua0707/p/10.html")
+
+history.go(num) // 调用这个才会触发
 ```
 https://www.cnblogs.com/tugenhua0707/p/10859214.html
-https://zhuanlan.zhihu.com/p/337073166
-https://juejin.cn/post/6844904151206330375#heading-3
 
 # 动态路由传参
    1. params 需要 name 和路由配置
