@@ -19,14 +19,19 @@
   </body>
 
   <script>
-    new Vue({
+    let vue = new Vue({
       el: "#app",
       data() {
         return {
           name: "gby",
           age: 18,
+          info:{
+            a: 123,
+            b:456
+          }
         };
       },
     });
+    console.log(vue)
   </script>
 </html>
