@@ -15,6 +15,9 @@
       <div>
         年龄： {{ age }}
       </div>
+      <div>
+        info.a: {{ info.a }}
+      </div>
     </div>
   </body>
 
@@ -25,13 +28,13 @@
         return {
           name: "gby",
           age: 18,
-          info:{
+          info: {
             a: 123,
-            b:456
-          }
+            b: 456,
+          },
         };
       },
     });
-    console.log(vue)
+    console.log(vue);
   </script>
 </html>

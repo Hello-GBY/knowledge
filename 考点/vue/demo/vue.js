@@ -34,13 +34,41 @@ function Compile(el, vm) {
     fragment.appendChild(children);
   }
 
-  // 文档编译
-
+  replace(fragment);
   vm.$el.appendChild(fragment);
+
+  // 文档编译
+  function replace(node) {
+    // 匹配{{}}
+    const regMustaChe = /\{\{\s*(\S+)\s*\}\}/;
+
+    // 是文本节点
+    if (node.nodeType == 3) {
+      const text = node.textContent;
+      let execResult = regMustaChe.exec(text);
+      // console.log("text: ", text);
+      // console.log("execResult: ", execResult);
+      if (execResult) {
+        let value = execResult[1]
+          .split(".")
+          .reduce((newObj, k) => newObj[k], vm);
+        node.textContent = text.replace(regMustaChe, value);
+
+        // 创建watcher实例
+        new watcher(vm, execResult[1], (newValue) => {
+          node.textContent = text.replace(regMustaChe, newValue);
+        });
+      }
+      return;
+    }
+    node.childNodes.forEach((e) => replace(e));
+  }
 }
 
 function Observe(obj) {
   if (!obj || typeof obj !== "object") return;
+
+  const dep = new Dep();
 
   Object.keys(obj).forEach((key) => {
     let value = obj[key];
@@ -55,10 +83,13 @@ function Observe(obj) {
         // 递归掉用 (当重新赋值时新对象的时候)
         Observe(newValue);
         console.log("obj: " + key + "  被赋值了", newValue);
+
         value = newValue;
       },
       get() {
         console.log("obj: " + key + "  被获取值", value);
+        Dep.target && dep.addSub(Dep.target);
+
         return value;
       },
     });
@@ -70,13 +101,13 @@ class Dep {
     this.sup = [];
   }
 
-  addSub(event) {
-    this.sup.push(event);
+  addSub(watcher) {
+    this.sup.push(watcher);
   }
   // 通告
   notify() {
-    this.sup.forEach((event) => {
-      event();
+    this.sup.forEach((watcher) => {
+      watcher.update();
     });
   }
 }
@@ -84,8 +115,21 @@ class Dep {
 // 发布者
 
 class Watcher {
-  constructor(cb) {
+  /**
+   *
+   * @param {*} vm vue实例
+   * @param {*} key 属性
+   * @param {*} cb 更新自己
+   */
+  constructor(vm, key, cb) {
+    this.vm = vm;
+    this.key = key;
     this.cb = cb;
+
+    // 存入
+    Dep.target = this;
+    key.split(".").reduce((newObj, k) => newObj[k], vm);
+    Dep.target = null;
   }
 
   // 修改dom
