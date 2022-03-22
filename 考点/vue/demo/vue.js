@@ -64,7 +64,32 @@ function Compile(el, vm) {
       }
       return;
     }
-    // v-model 属性
+    // input v-model 属性
+    if (node.nodeType == 1 && node.tagName.toUpperCase() == "INPUT") {
+      // 得到当前元素所有属性节点
+      const attr = Array.from(node.attributes);
+      let isHasVModel = attr.find((k) => k.name == "v-model");
+      if (isHasVModel) {
+        let newValue = isHasVModel.nodeValue
+          .split(".")
+          .reduce((newObj, k) => newObj[k], vm);
+        node.value = newValue;
+
+        new Watcher(vm, isHasVModel.nodeValue, (newValue) => {
+          node.value = newValue;
+        });
+
+        // 监听数据改变
+        node.addEventListener("input", (e) => {
+          let newValue = e.target.value;
+          let arr = isHasVModel.nodeValue.split(".");
+          let obj = arr
+            .slice(0, arr.length - 1)
+            .reduce((newObj, k) => newObj[k], vm);
+          obj[arr[arr.length - 1]] = newValue;
+        });
+      }
+    }
     node.childNodes.forEach((e) => replace(e));
   }
 }
@@ -87,7 +112,7 @@ function Observe(obj) {
         Observe(newValue);
         console.log("数据劫持 set: " + key, newValue);
         value = newValue;
-        dep.notify(newValue);
+        dep.notify();
       },
       get() {
         console.log("数据劫持 get:" + key, value);
@@ -107,10 +132,10 @@ class Dep {
     this.sub.push(watcher);
   }
   // 通告
-  notify(newValue) {
+  notify() {
     console.log("Dep notify 发布订阅");
     this.sub.forEach((watcher) => {
-      watcher.upData(newValue);
+      watcher.upData();
     });
   }
 }
@@ -136,11 +161,10 @@ class Watcher {
   }
 
   // 修改dom
-  upData(newValue) {
-    // let newValue = this.key
-    //   .split(".")
-    //   .reduce((newObj, k) => newObj[k], this.vm);
-    console.log("监听者进行更新: ", newValue);
+  upData() {
+    let newValue = this.key
+      .split(".")
+      .reduce((newObj, k) => newObj[k], this.vm);
     this.cb(newValue);
   }
 }
