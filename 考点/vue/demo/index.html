@@ -18,6 +18,9 @@
       <div>
         info.a: {{ info.a }}
       </div>
+      <br />
+      <div>name的值: <input v-model="name" /></div>
+      <div>info.b的值: <input v-model="info.b" /></div>
     </div>
   </body>
 
@@ -31,10 +34,12 @@
           info: {
             a: 123,
             b: 456,
+            c: 789,
           },
         };
       },
     });
+    window.vue = vue;
     console.log(vue);
   </script>
 </html>

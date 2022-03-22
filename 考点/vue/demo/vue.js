@@ -2,6 +2,7 @@ class Vue {
   constructor(options) {
     this.$data = options.data();
     console.log("this.$data: ", this.$data);
+    // console.log("dep: ", dep);
 
     // 数据劫持
     Observe(this.$data);
@@ -25,11 +26,13 @@ class Vue {
   }
 }
 
+// 处理指令操作
 function Compile(el, vm) {
   // 获取对应的文档结构
   vm.$el = document.querySelector(el);
   // 创建文档碎片（创建一块内存，放到内存中，页面上没有，防止重排重绘）
   const fragment = document.createDocumentFragment();
+
   while ((children = vm.$el.firstChild)) {
     fragment.appendChild(children);
   }
@@ -55,19 +58,19 @@ function Compile(el, vm) {
         node.textContent = text.replace(regMustaChe, value);
 
         // 创建watcher实例
-        new watcher(vm, execResult[1], (newValue) => {
+        new Watcher(vm, execResult[1], (newValue) => {
           node.textContent = text.replace(regMustaChe, newValue);
         });
       }
       return;
     }
+    // v-model 属性
     node.childNodes.forEach((e) => replace(e));
   }
 }
 
 function Observe(obj) {
   if (!obj || typeof obj !== "object") return;
-
   const dep = new Dep();
 
   Object.keys(obj).forEach((key) => {
@@ -82,14 +85,13 @@ function Observe(obj) {
       set(newValue) {
         // 递归掉用 (当重新赋值时新对象的时候)
         Observe(newValue);
-        console.log("obj: " + key + "  被赋值了", newValue);
-
+        console.log("数据劫持 set: " + key, newValue);
         value = newValue;
+        dep.notify(newValue);
       },
       get() {
-        console.log("obj: " + key + "  被获取值", value);
+        console.log("数据劫持 get:" + key, value);
         Dep.target && dep.addSub(Dep.target);
-
         return value;
       },
     });
@@ -98,16 +100,17 @@ function Observe(obj) {
 // 订阅者
 class Dep {
   constructor() {
-    this.sup = [];
+    this.sub = [];
   }
 
   addSub(watcher) {
-    this.sup.push(watcher);
+    this.sub.push(watcher);
   }
   // 通告
-  notify() {
-    this.sup.forEach((watcher) => {
-      watcher.update();
+  notify(newValue) {
+    console.log("Dep notify 发布订阅");
+    this.sub.forEach((watcher) => {
+      watcher.upData(newValue);
     });
   }
 }
@@ -133,7 +136,11 @@ class Watcher {
   }
 
   // 修改dom
-  upaDate() {
-    this.cb();
+  upData(newValue) {
+    // let newValue = this.key
+    //   .split(".")
+    //   .reduce((newObj, k) => newObj[k], this.vm);
+    console.log("监听者进行更新: ", newValue);
+    this.cb(newValue);
   }
 }
