@@ -9,5 +9,7 @@
  * 安装 webpack 5
  * npm i -D webpack@5 webpack-cli@3 webpack-dev-server@3
  *
+ * diff 算法 是新的虚拟dom 与老的虚拟dom 进行对比最小化对比 进行精细更新，最后反应到真实的dom上
+ *
  *
  */
