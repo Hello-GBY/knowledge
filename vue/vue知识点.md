@@ -36,3 +36,6 @@ reactive 动态设置的就是 proxy
 8. computed 不在是一个对象 而是一个函数；watch 不在是一个对象而是一个函数
 
 9. 
+
+
+.map 文件是干嘛的
