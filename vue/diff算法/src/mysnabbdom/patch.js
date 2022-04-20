@@ -20,8 +20,14 @@ export default function(oldVNode, newVNode) {
     console.log("使用一个节点");
   } else {
     // 暴力删除
-    createElement(newVNode, oldVNode.elm);
-    console.log("插入新的，删除旧的");
+    let newVNodeDom = createElement(newVNode);
+    // 将生成的新的元素，加入到老节点之前
+    if(oldVNode.elm.parentNode &&newVNodeDom){
+      oldVNode.elm.parentNode.insertBefore(newVNodeDom, oldVNode.elm)
+    }
+
+    // 删除老节点
+    oldVNode.elm.parentNode.removeChild(oldVNode.elm);
   }
 }
 
