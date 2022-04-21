@@ -27,7 +27,11 @@ export default function(oldVNode, newVNode) {
       console.log("信节点有text属性");
       // 判断新的text和老的text是否相同
       
-      if()
+      if(oldVNode.text != newVNode.text){
+        oldVNode.elm.innerText = newVNode.text
+      }
+
+      // if(){}
     }
   } else {
     // 暴力删除
