@@ -15,7 +15,7 @@ export default function(sel, data, c) {
     // 说明调用的h函数是形态1
     return VNode(sel, data, undefined, c, undefined);
   } else if (Array.isArray(c)) {
-    console.log("c: ", c);
+    // console.log("c: ", c);
     // c是数组的时候的时候
     // 遍历这个对象 看看 是不是 h函数
     for (const key of c) {
