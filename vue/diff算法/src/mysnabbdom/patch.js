@@ -3,7 +3,6 @@ import createElement from "./createElement.js";
 
 export default function(oldVNode, newVNode) {
   // 判断第一个参数是不是dom节点 还是虚拟节点
-  console.log("isVNode(oldVNode): ", isVNode(oldVNode));
   if (!isVNode(oldVNode)) {
     // 如果不是vNode对象 需要包装成vNode对象
     oldVNode = VNode(
@@ -26,15 +25,33 @@ export default function(oldVNode, newVNode) {
     ) {
       console.log("信节点有text属性");
       // 判断新的text和老的text是否相同
-      
-      if(oldVNode.text != newVNode.text){
-        oldVNode.elm.innerText = newVNode.text
+      if (oldVNode.text != newVNode.text) {
+        oldVNode.elm.innerText = newVNode.text;
       }
 
       // if(){}
+    } else {
+      // 新的有children
+      // 判断老的有没有 children
+      if (oldVNode.children != undefined && oldVNode.children.length > 0) {
+        console.log("老的也是含有children！！");
+      } else {
+        console.log("老的没有children");
+        // ffor
+        // for (let index = 0; index < newVNode.children.length; index++) {
+        //   const element = newVNode.children[index];
+        //   let newVNodeDom = createElement(element);
+        //   oldVNode.elm.parentNode.insertBefore(newVNodeDom, oldVNode.elm);
+        // }
+        let newVNodeDom = createElement(newVNode);
+        console.log("newVNodeDom: ", oldVNode.elm);
+        oldVNode.elm.parentNode.insertBefore(newVNodeDom, oldVNode.elm);
+        oldVNode.elm.parentNode.removeChild(oldVNode.elm);
+      }
     }
   } else {
     // 暴力删除
+
     let newVNodeDom = createElement(newVNode);
     // 将生成的新的元素，加入到老节点之前
     if (oldVNode.elm.parentNode && newVNodeDom) {

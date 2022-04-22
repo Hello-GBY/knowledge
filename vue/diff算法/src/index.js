@@ -14,12 +14,16 @@ const modelVNode = h("ul", {}, [
     ]),
   ]),
 ]);
-const modelVNode2 = h("ul", { class: "ulClass" }, "你好");
+const modelVNode2 = h("ul", { class: "ulClass" }, [
+  h("li", {}, [h("li", {}, "嘻嘻")]),
+  h("li", {}, "B"),
+  h("li", {}, "D"),
+]);
 
 var container = document.getElementById("container");
-patch(container, modelVNode);
+patch(container, modelVNode2);
 
 const butt = document.getElementById("butt");
 butt.onclick = function() {
-  patch(modelVNode, modelVNode2);
+  patch(modelVNode2, modelVNode);
 };
