@@ -92,7 +92,7 @@ let、const
 Promise
 
 口诀： 类模箭展解字默
-       SetMap来PS
+       SetMap来(let)PS
 
 es7
 
