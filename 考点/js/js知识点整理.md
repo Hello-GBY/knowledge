@@ -215,3 +215,7 @@ Function
 #  instanceof的实现原理
 # new的实现原理
 # 如何实现继承
+
+
+# 最大安全整数
+https://juejin.cn/post/6880143057930190855
