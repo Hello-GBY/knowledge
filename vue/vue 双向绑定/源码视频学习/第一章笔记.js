@@ -1,5 +1,5 @@
-runtimeOlyn;
-
+runtimeOnly;
+仅仅
 runTimeCompint;
 
 
