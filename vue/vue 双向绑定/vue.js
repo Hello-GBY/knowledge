@@ -96,9 +96,10 @@ function Compile(el, vm) {
 
 function Observe(obj) {
   if (!obj || typeof obj !== "object") return;
-  const dep = new Dep();
 
   Object.keys(obj).forEach((key) => {
+    const dep = new Dep();
+
     let value = obj[key];
     // 递归掉用（深层调用）
     Observe(value);
@@ -165,6 +166,7 @@ class Watcher {
     let newValue = this.key
       .split(".")
       .reduce((newObj, k) => newObj[k], this.vm);
+    console.log("newValue: ", newValue);
     this.cb(newValue);
   }
 }

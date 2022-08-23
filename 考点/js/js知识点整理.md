@@ -160,6 +160,8 @@ then() {
 箭头函数不能使用 new
 箭头函数不能使用.bind .apply .call
 箭头函数没有原型 不能继承
+箭头函数没有arguments
+箭头函数没有prototype
 
 # 7. let、var和const的区别？如果希望const定义的对象的属性也不能被修改该怎么做？
 
@@ -219,3 +221,6 @@ Function
 
 # 最大安全整数
 https://juejin.cn/post/6880143057930190855
+
+# 深浅拷贝
+
