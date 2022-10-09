@@ -77,3 +77,25 @@ https://www.cnblogs.com/tugenhua0707/p/10859214.html
     })
     // 地址 http://localhost:8080/test?id=50
    ```
+
+hash / history 第二次学习
+
+都是为了更改url的时候不刷新页面
+
+hash 模式 是地址栏通过 "#" 进行处理的
+起初是为了文档定位的锚点
+发现她可以记录在浏览器历史记录中 并且 更改的时候也可以监听到 就那他用做前端路由了
+刷新地址蓝 不会出现页面找不到的情况
+****
+history
+是html5的特性
+
+// 通过
+history.pushState() 增加历史记录
+
+// 监听浏览器前进后退事件，pushState 与 replaceState 方法不会触发
+windows.addEventListener('popState', () => {
+    
+})
+
+// 

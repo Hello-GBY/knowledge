@@ -197,6 +197,7 @@ const 定义常量 值不能改变
 # 10. 数据类型有哪些？如何判断一个数据是否是数组
 基本数据类型：
 string number null undefined boolean symbol() BigInt
+nnusbsb
 
 引用类型：
 Object
