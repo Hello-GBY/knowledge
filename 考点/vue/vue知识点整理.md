@@ -27,7 +27,7 @@ beforeUpdate() 数据更新之前
 update() 数据更新之后
 
 beforeDestroy 组件卸载之前
-destroy组件卸载之后
+destroy 组件卸载之后
 
 active
 deactivated
@@ -43,3 +43,4 @@ errorCaptured
 
 
 2. 双向绑定原理
+   我们平时正常使用vue的情况是： 更改data的值 然后视图发生改变。这个是现象是吧。那这个过程的原理是什么？ 先要监听到data的改变 也就是用Object.defindePropotry进行数据的监听钰改变。
