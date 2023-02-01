@@ -12,6 +12,7 @@
 4. eventBus
 5. Provide inject
 6. Vuex
+
 7. attr listrens
 8. 
 ```
