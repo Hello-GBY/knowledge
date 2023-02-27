@@ -157,7 +157,9 @@ class Watcher {
 
     // 存入
     Dep.target = this;
+    // 取值
     key.split(".").reduce((newObj, k) => newObj[k], vm);
+    
     Dep.target = null;
   }
 

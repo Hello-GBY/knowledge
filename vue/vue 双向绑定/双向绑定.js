@@ -48,4 +48,3 @@ Object.defineProperty(obj,"name", {
  * 知识点：
  * 订阅者相当于dom元素
  * /
-
