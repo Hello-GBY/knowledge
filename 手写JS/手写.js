@@ -66,3 +66,23 @@ function MySetInterval(cb, time) {
 function myClearInterval (timer) {
     clearTimeout(timer)
 }
+
+// 发布订阅模式
+// 题目描述:实现一个发布订阅模式拥有 on emit once off 方法
+
+class Event {
+    constructor () {
+        this.eventList = {}
+    }
+    on(type, fn) {
+        if(!fn) return
+        if(!this.eventList[type]) this.eventList[type] = []
+
+        this.eventList[type].push(fn)
+    }
+    emit() {
+        
+    }
+    once() {}
+    off() {}
+}
