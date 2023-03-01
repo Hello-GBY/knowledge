@@ -118,3 +118,26 @@ class Event {
 
 
 // 手写 promise.all 和 race
+
+function myAll (fns) {
+    let resAll = [];
+    let j = 0;
+
+    return new Promise((resolve, rej) => {
+        fns.forEach((fn, i) => {
+            fn.then((res) => {
+                ++j; 
+                resAll[i] = res;
+                if(j == promiseLen) resolve(resAll);
+            })
+        })
+    })  
+}
+
+function race (fns) {
+    return new Promise((resolve, reject) => {
+        for (const fn of fns) {
+            
+        }
+    })
+}
