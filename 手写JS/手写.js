@@ -80,9 +80,41 @@ class Event {
 
         this.eventList[type].push(fn)
     }
-    emit() {
+    emit(type, ...args) {
+        if(!type) return
+        this.eventList[type] && this.eventList[type].forEach(fn => fn(...args))
         
     }
-    once() {}
-    off() {}
+    once(type, fn) {
+        let that = this
+        let _fn =  function() {
+            try {
+                fn()
+            } catch (error) {
+                console.log('error: ', error);
+            }
+            that.off(type, _fn)
+        }
+        this.on(type, _fn)
+    }
+    off(type, fn) {
+        if(!type) return
+        if(!this.eventList[type]) return
+        if(!fn) {
+            this.eventList[type].length = 0
+            return
+        }
+        // 第一种方法
+        // findIndex + splice
+        // let index = this.eventList[type].findIndex((f) => fn = f)
+        // if(index == -1) return
+        // this.eventList[type].splice(index, index+1)
+        // 第二种方法
+        this.eventList[type] = this.eventList[type].filter(func => func !== fn)
+    }
 }
+
+// 离线的触发
+
+
+// 手写 promise.all 和 race
