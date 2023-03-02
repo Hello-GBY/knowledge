@@ -67,7 +67,7 @@ function myClearInterval (timer) {
     clearTimeout(timer)
 }
 
-// 发布订阅模式
+// 3. 发布订阅模式
 // 题目描述:实现一个发布订阅模式拥有 on emit once off 方法
 
 class Event {
@@ -116,16 +116,14 @@ class Event {
 
 // 离线的触发
 
-
-// 手写 promise.all 和 race
-
+// 4. 手写 promise.all 和 race
 function myAll (fns) {
     let resAll = [];
     let j = 0;
 
     return new Promise((resolve, rej) => {
         fns.forEach((fn, i) => {
-            fn.then((res) => {
+            Promise.resolve(fn).then((res) => {
                 ++j; 
                 resAll[i] = res;
                 if(j == promiseLen) resolve(resAll);
@@ -134,10 +132,59 @@ function myAll (fns) {
     })  
 }
 
-function race (fns) {
+function myRace (fns) {
     return new Promise((resolve, reject) => {
         for (const fn of fns) {
-            
+            Promise.resolve(fn).then(res => {
+                resolve(res);
+            },(rej => {
+                reject(rej);
+            }) )
         }
     })
 }
+// 5. 手写-实现一个寄生组合继承
+
+// 1. 原型链继承
+function Parent() {
+    this.name = '123';
+    this.play = [1, 2, 3];
+}
+
+Parent.prototype.getName = function () {
+    console.log('获取name');
+    return this.name
+}
+
+Child.prototype = new Parent()
+
+function Child() {
+    this.type = 'test';
+}
+
+let a1 = new Child(); 
+let a2 = new Child();
+
+
+// 2. 构造函数继承
+function Child () {
+    Parent.call(this); //只能拥有this 上定义的 不能继承原型上的
+    this.type = 'test';
+}
+let c1 = new Child();
+
+// 3. 组合继承
+function Child() {
+    Parent.call(this);
+    this.type = 'test2';
+}
+Child.prototype = new Parent()
+Child.prototype.constructor = Child
+// 缺点是执行了两次
+
+// 4.
+
+
+
+
+
