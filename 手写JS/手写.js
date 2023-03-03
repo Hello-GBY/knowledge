@@ -182,9 +182,31 @@ Child.prototype = new Parent()
 Child.prototype.constructor = Child
 // 缺点是执行了两次
 
-// 4.
+// 4. 寄生组合继承
+// 就是将组合上的原型继承 更改为Object.create()
+// 能减少一次请求 
+function Child() {
+    Parent.call(this);
+    this.type = 'test2';
+}
+function clone(){
+    Child.prototype = Object.create(Parent.prototype)
+    Child.prototype.constructor = Child
+}
 
+// 主要是 使用没用 Object.create( 来划分
 
-
-
-
+// 4 数组去重
+function uniqueArr(arr) {
+    return [...new Set(arr)]
+}
+function uniqueArr1(arr) {
+    let arr2 = [];
+    
+    arr.forEach(i => {
+        if(!arr2.includes(i)) {
+            arr2.push(i)
+        }
+    })
+    return arr2
+}
