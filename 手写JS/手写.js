@@ -280,35 +280,89 @@ function addTask(time, data) {
 }
 
 // 第三种解法
+// class Scheduler{
+//     constructor(limit) {
+//         this.limit = limit
+//         this.queue =  []
+//         this.counter = 0
+//     },
+//     taskStart() {
+//       for (let index = 0; index < this.limit; index++) {
+//         this.request()
+//       }
+//     }
+//     add(time, order)() {
+//         let promiseInstance =  () => {
+//             new Promise((resolve, reject) => {
+//                 setTimeout(() => {
+//                     console.log(order)
+//                     resolve(order)
+//                 }, time)
+//             })
+//         }
+//         this.queue.push(promiseInstance)
+//     }
+//     request() {
+//        if(!(this.queue && this.queue.length && this.limit > this.queue.length)) {
+//         return
+//        }
+//        this.counter++;
+//        this.queue.shift()().then(() => {
+//         this.counter--;
+//         this.request()
+//        })
+//     }
+// }
+// const scheduler = new Scheduler(2);
+
+// function addTask(time, data) {
+//   scheduler.add(time,data)
+// }
+// addTask(1000, "1");
+// addTask(500, "2");
+// addTask(300, "3");
+// addTask(400, "4");
+// scheduler.taskStart();
+
 class Scheduler{
-    constructor(limit) {
-        this.limit = limit
-        this.queue =  []
-        this.counter = 0
-    },
-    taskStart(fn) {
+  constructor(limit) {
+    this.limit = limit;
+    this.queue = [];
+    this.counter = 0;
+  }
+  add(timer, data){
 
+    let promiseInstance  = () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log(data)
+          resolve(data)
+        }, time)
+      })
     }
-    add(time, order)() {
-        let promiseInstance =  () => {
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    console.log(order)
-                    resolve(order)
-                }, time)
-            })
-        }
-        this.queue.push(promiseInstance)
-    }
-    request(time, order) {
-       if(!(this.queue && this.queue.length && this.limit > this.queue.length)) {
-        return
-       }
+    this.queue.push(promiseInstance)
+  }
+  request() {
+    if(!(this.queue && this.queue.length && this.counter <= this.limit)) return
+    this.counter++
+    this.queue.shift()().then(res => {
+      this.counter--
+      this.request()
+    })
+  }
 
-       this.add(timer, order)
+  startTask() {
+    for (let index = 0; index < this.limit; index++) {
+        this.request()
     }
+  }
 }
 
 function addTask(time, data) {
-
+  scheduler.add(time,data)
 }
+addTask(1000, "1");
+addTask(500, "2");
+addTask(300, "3");
+addTask(400, "4");
+scheduler.taskStart();
