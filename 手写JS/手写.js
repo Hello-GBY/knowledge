@@ -366,3 +366,18 @@ addTask(500, "2");
 addTask(300, "3");
 addTask(400, "4");
 scheduler.taskStart();
+
+
+// 8 new 操作符
+function myNew(fn, ...args) {
+  // 继承prototype
+  let obj = Object.assign({}, fn.prototype);
+  // 赋值this
+  let res = fn.call(obj, ...args)
+  if(typeof res == 'object' || typeof res == 'function') return res
+  return obj
+}
+
+
+
+
