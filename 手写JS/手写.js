@@ -378,6 +378,45 @@ function myNew(fn, ...args) {
   return obj
 }
 
+// 9. 手写 call apply ** bind 实现
+function myCall(content, ...args){
+    if(!content) content = window
+    // 怎么知道 fn
+    let fn = Symbol('fn')
+    content[fn] = this
+    return content[fn](...args)
+}
+Function.prototype.myCall = myCall
 
+// function a() {}
+// a.myCall({}, 1,2,3,4)
+
+function myApply(content, args){
+  if(!content) content = window;
+
+  let fn = Symbol("fn")
+  content[fn] = this
+  return content[fn](...args)
+}
+// ** bind 实现
+function myBind(content, args) {
+  if(!content) content = window
+
+  let fn = Symbol("fn");
+  let _this = this
+
+  content[fn] = this;
+  // 判断是不是通过new调用
+  let result = function(...args2) {
+    if(_this instanceof this){
+      this[fn] = _this
+      this[fn](...[...args, ...args2])
+    }else {
+      content[fn](...[...args, ...args2])
+    }
+  }
+  result.prototype = Object.assign(this.prototype)
+  return result
+}
 
 
