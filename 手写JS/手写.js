@@ -390,7 +390,6 @@ Function.prototype.myCall = myCall
 
 // function a() {}
 // a.myCall({}, 1,2,3,4)
-
 function myApply(content, args){
   if(!content) content = window;
 
@@ -419,7 +418,49 @@ function myBind(content, args) {
   return result
 }
 
-// 实现insterof
+
+// 手写深拷贝
+// 1. 注意要判断数组 2. 用 for in 就行
+function deepClone(obj) {
+    // 校验
+    if(!obj || typeof obj !== 'object') return obj
+
+    let temp = Array.isArray(obj) ? [] : {}
+    
+    for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            const element = obj[key];
+            temp[key] = deepClone(element)
+        }
+    }
+    return temp
+}
+
+// 优化 用 map 判断是否为循环引用  
+function deepClone(obj, map = new WeakMap()) {
+    // 校验
+    if(!obj || typeof obj !== 'object') return obj
+    if(map.has(obj)) {
+        console.log('map.get(obj): ', map.get(obj));
+        return map.get(obj)
+    }
+    let temp = Array.isArray(obj) ? [] : {}
+    map.set(obj, temp)
+    for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            const element = obj[key];
+            temp[key] = deepClone(element, map)
+        }
+    }
+    return temp
+}
+var a = {
+    asd: 456
+}
+a.value = a
+deepClone(a)
+
+// 实现 instanceof
 function myInstanceof(left, right){
   if(!left) return false
   let proto_ = left.__proto__
@@ -429,3 +470,4 @@ function myInstanceof(left, right){
     proto_ = proto_.__proto__
   }
 }
+
