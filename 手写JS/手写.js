@@ -419,4 +419,13 @@ function myBind(content, args) {
   return result
 }
 
-
+// 实现insterof
+function myInstanceof(left, right){
+  if(!left) return false
+  let proto_ = left.__proto__
+  while(true){
+    if(proto_ == null) return false
+    if(proto_ == right.prototype) return true
+    proto_ = proto_.__proto__
+  }
+}
