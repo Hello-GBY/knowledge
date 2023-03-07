@@ -471,3 +471,30 @@ function myInstanceof(left, right){
   }
 }
 
+// 12 柯里化
+//  fn.length 可一获取参数的位数
+function curry(fn, ...args1) {
+  let args = fn.length
+  let argsAll = args1
+  
+  let res = function (...args2) {
+    argsAll = argsAll.concat(args2)
+    if(argsAll.length == args) {
+      return fn(...argsAll)
+    } else {
+      return res
+    }
+  }
+  return res
+}
+
+function sum(a, b) {
+  return a + b;
+}
+let curriedSum = curry(sum);
+
+alert(curriedSum(1)(2)); // 3
+
+
+
+// 冒泡排序--时间复杂度 n^2
