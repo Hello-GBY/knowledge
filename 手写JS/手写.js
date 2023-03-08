@@ -498,6 +498,7 @@ alert(curriedSum(1)(2)); // 3
 
 
 // 冒泡排序--时间复杂度 n^2
+// 相邻的交换 将最大的挪动到最后了
 function bubbleSort(arr) {
     let len = arr.length
     // 外层来确定完成了几项
@@ -513,3 +514,23 @@ function bubbleSort(arr) {
 }
 
 
+//选择排序--时间复杂度 n^2
+// 每次找出最小的值
+function selectSort(arr) {
+  let len = arr.length
+  let minIndex
+  for (let i = 0; i < len; i++) {
+      minIndex = i
+      for (let j = i; j < len; j++) {
+          if(arr[minIndex] > arr[j]){
+              minIndex = j
+          }
+      }
+      if(minIndex != i) {
+          // 将最小值放到最前面
+          [arr[i], arr[minIndex]] =[arr[minIndex],arr[i]] 
+      }
+
+  }
+  return arr
+}
