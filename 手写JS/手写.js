@@ -498,3 +498,18 @@ alert(curriedSum(1)(2)); // 3
 
 
 // 冒泡排序--时间复杂度 n^2
+function bubbleSort(arr) {
+    let len = arr.length
+    // 外层来确定完成了几项
+    for (let i = 0; i < len; i++) {
+      // 内层来转换
+      for (let j = 0; j < len - i; j++) {
+        if(arr[j] > arr[j+1]) {
+          [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+        }
+      }
+    }
+    return arr
+}
+
+
