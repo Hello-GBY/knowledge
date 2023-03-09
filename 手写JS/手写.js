@@ -514,7 +514,7 @@ function bubbleSort(arr) {
 }
 
 
-//选择排序--时间复杂度 n^2
+// 选择排序--时间复杂度 n^2
 // 每次找出最小的值
 function selectSort(arr) {
   let len = arr.length
@@ -531,6 +531,38 @@ function selectSort(arr) {
           [arr[i], arr[minIndex]] =[arr[minIndex],arr[i]] 
       }
 
+  }
+  return arr
+}
+
+// 插入排序--时间复杂度 n^2
+function insertSort(arr){
+  let len = arr.length;
+
+  for (let i = 0; i < len; i++) {
+    const element = arr[i];
+    let minIndex = i;
+    for (let j = i ; j>=0; j--) {
+      if(element < arr[j]){
+        minIndex--
+        arr[j+1] = arr[j]
+      }
+    }
+    arr[minIndex] = element
+  }
+  return arr
+}
+
+// 数组往后挪动 挪动到数据大于下一个值 就放下
+function insertSort2(arr){
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    let j = i
+    while (j > 0 && element < arr[j]) {
+      arr[j] = arr[j-1]
+      --j
+    }
+    arr[j] = element
   }
   return arr
 }
