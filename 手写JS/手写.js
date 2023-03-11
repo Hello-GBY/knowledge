@@ -574,7 +574,7 @@ function search(arr, target, start, end){
     let mid = Math.floor(start + end / 2)
     
     if(arr[mid] == target)  {
-      targetIndex = start + 1
+      targetIndex = mid
       return targetIndex
     }
     if(start >  end) return targetIndex
@@ -586,3 +586,4 @@ function search(arr, target, start, end){
       return search(arr, target, start, mid -1)
     }
 }
+
