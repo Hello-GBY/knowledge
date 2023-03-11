@@ -567,8 +567,6 @@ function insertSort2(arr){
   return arr
 }
 
-
-
 // 快排
 function quickSort(arr) {
   if(arr.length < 2) {
@@ -594,4 +592,23 @@ function merge(left, right) {
 
 function mergeSort(arr) {
 
+}
+// 二分查找
+function search(arr, target, start, end){
+    let targetIndex = -1
+    
+    let mid = Math.floor(start + end / 2)
+    
+    if(arr[mid] == target)  {
+      targetIndex = mid
+      return targetIndex
+    }
+    if(start >  end) return targetIndex
+    if(arr.length <= 1) return targetIndex
+
+    if(arr[mid] < target) {
+      return search(arr, target, mid + 1, end)
+    } else {
+      return search(arr, target, start, mid -1)
+    }
 }
