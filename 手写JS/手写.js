@@ -567,6 +567,32 @@ function insertSort2(arr){
   return arr
 }
 
+// 快排
+function quickSort(arr) {
+  if(arr.length < 2) {
+    return arr
+  }
+  let cur = arr[0]
+
+  // 小于的放在左面  大于的放在右面
+  let leftArr = arr.filter((a, i) => a-cur <= 0 && i !== 0)
+  let rightArr = arr.filter((a) => a-cur > 0 )
+
+  return [...quickSort(leftArr), cur, ...quickSort(rightArr)]
+}
+
+// 归并排序
+// 用空间换时间
+function merge(left, right) {
+  let res = [];
+  while(i < left.length && i < right.length){
+    
+  }
+}
+
+function mergeSort(arr) {
+
+}
 // 二分查找
 function search(arr, target, start, end){
     let targetIndex = -1
