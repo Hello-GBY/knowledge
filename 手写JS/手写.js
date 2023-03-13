@@ -636,7 +636,7 @@ window.addEventListener(
     console.log(111);
   }, 1000)
 );
-
+ 
 
 // 节流
 // 设置一个标志
@@ -658,3 +658,83 @@ window.addEventListener(
     console.log(111);
   }, 1000)
 );
+
+// 19 实现 LazyMan
+// 重点是next 和 settimeout(fn, 0)
+function lazyMan(name) {
+  let queue = [];
+  queue.push({func: getHookFunc('default'), data: name})
+  setTimeout(() => {
+    next()
+  },0)
+  function getHookFunc (type, data) {
+     let typeInstance = {
+      default: function (data, next) {
+        console.log('Hi This is : ', data);
+        next()
+      },
+      sleepFirst: function  (data, next) {
+        console.log('Wake up after ', data);
+        setTimeout(() =>{
+          next()
+        }, data)
+      },
+      sleep: function (data, next) {
+        console.log('Wake up after', data);
+        setTimeout(() =>{
+          next()
+        }, data)
+      },
+      eat: function (data, next) {
+        console.log('Eat ', data);
+        next()
+      },
+    }
+    return typeInstance[type]
+  }
+  function next() {
+    let instance = queue.shift()
+    instance && instance.func(instance.data, next)
+  }
+  let hook = {
+    sleep: function(time) {
+      queue.push({func: getHookFunc('sleep'), data: time})
+      return hook
+    },
+    eat: function(text) {
+      queue.push({func: getHookFunc('eat'), data: text})
+      return hook
+    },
+    sleepFirst: function (time) {
+      queue.unshift({func: getHookFunc('sleepFirst'), data: time})
+      return hook
+    }
+  }
+  return hook
+}
+
+// 第二种方法
+class LazyMan {
+  constructor() {
+    this.queue = []
+    setTimeout(() => {
+      this.next()
+    })
+  }
+
+  next() {
+    let fn = this.queue.shift()
+    fn && fn()
+  }
+
+  sleep(time) {
+
+  }
+
+  sleepFirst() {
+    
+  }
+}
+
+// 写版本号排序方法
+
