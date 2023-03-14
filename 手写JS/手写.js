@@ -337,7 +337,7 @@ class Scheduler{
         setTimeout(() => {
           console.log(data)
           resolve(data)
-        }, time)
+        }, timer)
       })
     }
     this.queue.push(promiseInstance)
@@ -732,9 +732,48 @@ class LazyMan {
   }
 
   sleepFirst() {
-    
+    11-19
   }
 }
 
 // 写版本号排序方法
+// 题目描述: 有一组版本号如下 ['0.1.1', '2.3.3', '0.302.1', '4.2', '4.3.5', '4.3.4.5']。
+// 现在需要对其进行排序，排序的结果为: ['4.3.5','4.3.4.5','2.3.3','0.302.1','0.1.1']
+
+// 思路: 先按照最高版本排序 然后各个版本在二级版本排序 然后在 
+// 类似于归并算法
+
+function versionSort(arr) {
+  arr.sort((a, b) => {
+    let i = 0
+    let arr1 = a.split('.')
+    let arr2 = b.split('.')
+  
+    while(true) {
+      const s1 = arr1[i];
+      const s2 = arr2[i];
+  
+      if(s1 === undefined ||  s2 === undefined){
+        return arr1.length - arr2.length
+      }
+  
+      if(s1 == s2) continue;
+  
+      return s2 -s1;
+    }
+  })
+
+  return arr
+}
+ 
+// pacth 函数主要是 用来初始化 vnode
+// 其次是更新的时候 能 进行新老元素对比  
+//     在对比过程中 如果节点类型一致的化 调用 pacthVnode
+//     如果不一致则删除在新增元素
+//          pacthVnode  比较子节点
+//             text children
+
+//             主要是 都有children 的时候  进行 updateChildren 更新
+
+//             text 和 children
 
