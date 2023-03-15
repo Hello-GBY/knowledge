@@ -815,3 +815,18 @@ class LRUCache {
   }
 }
 
+// 实现一个 add 方法
+// 题目描述: 使计算结果能够满足如下预期： add(1)(2)(3)()=6 add(1,2,3)(4)()=10
+
+function add() {
+  let numArr = [...arguments]
+  let fn = function () {
+    let args2 = [...arguments]
+    if(!args2.length) {
+      return numArr.reduce((a, b) => a+b)
+    }
+    numArr.push(...args2)
+    return fn
+  }
+  return fn 
+}
