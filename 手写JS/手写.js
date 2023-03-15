@@ -759,7 +759,7 @@ function versionSort(arr) {
   
       if(s1 == s2) continue;
   
-      return s2 -s1;
+      return s2 - s1;
     }
   })
 
@@ -776,4 +776,42 @@ function versionSort(arr) {
 //             主要是 都有children 的时候  进行 updateChildren 更新
 
 //             text 和 children
+
+// LRU算法
+// 时间复杂度为O(1) 一定是对象这样存储
+class LRUCache {
+  constructor(limit) {
+    this.lruQueue = new Map()
+    this.limit = limit
+  }
+  
+  put(key, value) {
+    if(this.lruQueue.has(key)) {
+      this.lruQueue.delete(key);
+      this.lruQueue.set(key, value);
+    }
+
+    // 注意
+    else if(this.lruQueue.size < this.limit) {
+      this.lruQueue.set(key, value);
+    }
+
+    // 注意
+    else {
+      // Iter.next().value  Iter 是迭代器
+      this.lruQueue.set(key, value)
+      this.lruQueue.delete(this.lruQueue.keys().next().value);
+    }
+  } 
+
+  get(key) {
+    
+    // 注意
+    if(this.lruQueue.has(key)) {
+      let value = this.lruQueue.get(key)
+      this.put(key, value)
+      return value
+    } else return -1
+  }
+}
 
