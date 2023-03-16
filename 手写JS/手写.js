@@ -867,3 +867,21 @@ function flat(arr, num = 1) {
 }
 
 // 实现 reduce 函数
+// arr.reduce((a, b) => { return a + b }, num)
+Array.prototype.myReduce = function (callback, num) {
+    let arr = this;
+    let i = 0;
+    let start = num;
+
+    if(!num) {
+      start = arr[i]
+      i++
+    }
+
+    while(i < arr.length){
+      start = callback(start, arr[i], i, arr);
+      i++;
+    }
+
+    return start
+}
