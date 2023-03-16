@@ -830,3 +830,30 @@ function add() {
   }
   return fn 
 }
+
+
+// 实现 数组扁平化
+// 实现一个方法使多维数组变成一维数组
+// arr[1, [2,[3,4]]]
+
+// 第一种 主要是利用 concat 和 递归操作
+function flat(arr, num = 1){
+  if(num <= 0) return arr;
+
+  let flatArr = []
+  let ifHasArray =  false
+
+  arr.forEach((e,i) => {
+    if(Array.isArray(e)) {
+      hasArray = true
+      flatArr = flatArr.concat(e)
+    }else{
+      flatArr.push(e)
+    }
+  })
+  
+  if(ifHasArray)  return flat(flatArr, num--)
+  
+  return flatArr
+}
+
