@@ -857,3 +857,13 @@ function flat(arr, num = 1){
   return flatArr
 }
 
+// 第二种是利用while循环
+function flat(arr, num = 1) {
+  while(num > 0 && arr.some(item => Array.isArray(item))) {
+    --num
+    arr = [].concat(...arr)
+  }
+  return arr
+}
+
+// 实现 reduce 函数
