@@ -885,3 +885,53 @@ Array.prototype.myReduce = function (callback, num) {
 
     return start
 }
+
+// 手写Promise
+class MyPromise {
+  static pending = 'pending'
+  static success = 'success'
+  static fail = 'fail'
+  constructor (callback) {
+    this.status = MyPromise.pending
+    
+    this.successDate = ''
+    this.failData = ''
+    this.successFunc = ''
+    this.failFunc = ''
+    
+    callback(this.resolve.bind(this), this.reject.bind(this));
+  }
+
+  resolve(...args) {
+    if(this.status !== MyPromise.pending) return
+
+    this.status = MyPromise.success
+    this.successDate = args
+
+    this.successFunc(...args)
+  }
+
+  reject(...args) {
+    if(this.status !== MyPromise.pending) return
+
+    this.status = MyPromise.fail
+    this.failData = args
+
+    this.failFunc()
+  }
+
+  then(successFunc, failFunc) {
+    return new Promise((resolve, reject) => {
+      this.successFunc = () => {
+        let data = successFunc(this.successDate)
+        resolve(data)
+      }
+      this.failFunc = () => {
+        let data = failFunc(this.failData)
+        reject(data)
+      }
+    })
+  }
+}
+
+// 创建
