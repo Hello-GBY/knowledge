@@ -979,3 +979,12 @@ function DOM2JSON(domTree) {
   return obj
 }
 // 类数组转化为数组的方法
+const arrayLike=document.querySelectorAll('div')
+
+[...arrayLike];
+Array.from(arrayLike);
+
+Array.prototype.slice.call(arrayLike)
+Array.prototype.concat.apply([], arrayLike)
+Array.apply(null, arrayLike)
+
