@@ -934,4 +934,48 @@ class MyPromise {
   }
 }
 
-// 创建
+// 请实现 DOM2JSON 一个函数，可以把一个 DOM 节点输出 JSON 的格式
+```
+<div>
+  <span>
+    <a></a>
+  </span>
+  <span>
+    <a></a>
+    <a></a>
+  </span>
+</div>
+
+把上诉dom结构转成下面的JSON格式
+
+{
+  tag: 'DIV',
+  children: [
+    {
+      tag: 'SPAN',
+      children: [
+        { tag: 'A', children: [] }
+      ]
+    },
+    {
+      tag: 'SPAN',
+      children: [
+        { tag: 'A', children: [] },
+        { tag: 'A', children: [] }
+      ]
+    }
+  ]
+}
+```
+// 主要是 tagName 能获取标签，childNodes 能获取元素内容
+function DOM2JSON(domTree) {
+  let obj = {};
+  // 判断元素类型
+  let tag = domTree.tagName;
+  obj.tag = tag;
+  obj.children = [];
+
+  domTree.childNodes.forEach(e=> obj.children.push(DOM2JSON(e)));
+  return obj
+}
+// 类数组转化为数组的方法
