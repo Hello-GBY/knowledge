@@ -988,3 +988,16 @@ Array.prototype.slice.call(arrayLike)
 Array.prototype.concat.apply([], arrayLike)
 Array.apply(null, arrayLike)
 
+// 28 Object.is 实现
+// 题目描述:
+// Object.is不会转换被比较的两个值的类型，这点和===更为相似，他们之间也存在一些区别。
+//     1. NaN在===中是不相等的，而在Object.is中是相等的
+//     2. +0和-0在===中是相等的，而在Object.is中是不相等的
+Object.is = function(x, y){
+  if(x === y) {
+    return x !== 0 || x / 1 === y / 1
+  }
+
+  // return isNaN(X) && isNaN(y)
+  return x !== x &&  y !== y
+}
