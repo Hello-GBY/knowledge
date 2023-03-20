@@ -1020,3 +1020,29 @@ function MyAJAX(option) {
   }
   xml.send()
 }
+
+// 30 分片思想解决大数据量渲染问题
+// 题目描述: 渲染百万条结构简单的大数据时 怎么使用分片思想优化渲染 实现代码如下:
+// 其实就是利用 windows.requestAnimationFrame  和 递归
+let total = 100000
+let once = 20
+let index = 0
+let ul = document.getElementById("container");
+
+function loop(curTotal, curIndex) {
+  if(curTotal<=0) return
+
+  let page = Math.min(curTotal, once)
+
+  window.requestAnimationFrame(() => {
+    // 正常逻辑
+    for (let index = 0; index < page; index++) {
+      let li = document.createElement('li')
+      li.innerText = `${curIndex + index} : ${~~Math.random() * total}}` 
+      ul.appendChild(li)
+    }
+    loop(curTotal - page, curIndex + page)
+  })
+
+}
+loop(total, index)
