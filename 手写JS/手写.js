@@ -871,17 +871,17 @@ function flat(arr, num = 1) {
 Array.prototype.myReduce = function (callback, num) {
     let arr = this;
     let i = 0;
-    let start = num;
+    let preValue = num;
 
     if(!num) {
-      start = arr[i]
-      i++
+      preValue = arr[0];
+      i = 1;
     }
 
     while(i < arr.length){
-      start = callback(start, arr[i], i, arr);
+      preValue = callback(preValue, arr[i], i, arr);
       i++;
     }
 
-    return start
+    return preValue
 }
