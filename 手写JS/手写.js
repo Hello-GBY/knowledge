@@ -249,7 +249,7 @@ var SchedulerInstance = (function () {
     var list = [];
     var i = 0;
     return function (fn) {
-        if (i > =2) {
+        if (i >=2 ) {
             list.push(fn);
             return;
         } else {
@@ -882,6 +882,121 @@ Array.prototype.myReduce = function (callback, num) {
       preValue = callback(preValue, arr[i], i, arr);
       i++;
     }
-
     return preValue
+}
+
+// 手写Promise
+class MyPromise {
+  static pending = 'pending'
+  static success = 'success'
+  static fail = 'fail'
+  constructor (callback) {
+    this.status = MyPromise.pending
+    
+    this.successDate = ''
+    this.failData = ''
+    this.successFunc = ''
+    this.failFunc = ''
+    
+    callback(this.resolve.bind(this), this.reject.bind(this));
+  }
+
+  resolve(...args) {
+    if(this.status !== MyPromise.pending) return
+
+    this.status = MyPromise.success
+    this.successDate = args
+
+    this.successFunc(...args)
+  }
+
+  reject(...args) {
+    if(this.status !== MyPromise.pending) return
+
+    this.status = MyPromise.fail
+    this.failData = args
+
+    this.failFunc()
+  }
+
+  then(successFunc, failFunc) {
+    return new Promise((resolve, reject) => {
+      this.successFunc = () => {
+        let data = successFunc(this.successDate)
+        resolve(data)
+      }
+      this.failFunc = () => {
+        let data = failFunc(this.failData)
+        reject(data)
+      }
+    })
+  }
+}
+
+// 请实现 DOM2JSON 一个函数，可以把一个 DOM 节点输出 JSON 的格式
+```
+<div>
+  <span>
+    <a></a>
+  </span>
+  <span>
+    <a></a>
+    <a></a>
+  </span>
+</div>
+
+把上诉dom结构转成下面的JSON格式
+
+{
+  tag: 'DIV',
+  children: [
+    {
+      tag: 'SPAN',
+      children: [
+        { tag: 'A', children: [] }
+      ]
+    },
+    {
+      tag: 'SPAN',
+      children: [
+        { tag: 'A', children: [] },
+        { tag: 'A', children: [] }
+      ]
+    }
+  ]
+}
+```
+// 主要是 tagName 能获取标签，childNodes 能获取元素内容
+function DOM2JSON(domTree) {
+  let obj = {};
+  // 判断元素类型
+  let tag = domTree.tagName;
+  obj.tag = tag;
+  obj.children = [];
+
+  domTree.childNodes.forEach(e=> obj.children.push(DOM2JSON(e)));
+  return obj
+}
+// 类数组转化为数组的方法
+const arrayLike=document.querySelectorAll('div')
+
+// [...arrayLike];
+Array.from(arrayLike);
+
+Array.prototype.slice.call(arrayLike)
+Array.prototype.concat.apply([], arrayLike)
+Array.apply(null, arrayLike)
+
+// 28 Object.is 实现
+// 题目描述:
+// Object.is不会转换被比较的两个值的类型，这点和===更为相似，他们之间也存在一些区别。
+//     1. NaN在===中是不相等的，而在Object.is中是相等的
+//     2. +0和-0在===中是相等的，而在Object.is中是不相等的
+Object.is = function(x, y){
+  if(x === y) {
+    return x !== 0 || x / 1 === y / 1
+  }
+
+  // return isNaN(X) && isNaN(y)
+  return x !== x &&  y !== y
 }
