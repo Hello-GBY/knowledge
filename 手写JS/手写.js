@@ -1000,3 +1000,23 @@ Object.is = function(x, y){
   // return isNaN(X) && isNaN(y)
   return x !== x &&  y !== y
 }
+
+// 29 
+// 题目描述:利用 XMLHttpRequest 手写 AJAX 实现
+function MyAJAX(option) {
+  let {url,type, header, success, fail} = {...option}
+  let xml = new XMLHttpRequest()
+
+  xml.open(type, url, true);
+  xml.setRequestHeader('content-type', "application/json")
+  xml.onreadystatechange = function() {
+    if(xml.readyState !== 4 ) return;
+
+    if(xml.status == 200 || xml.status == 304){
+      success(xml.responseText);
+    }else{
+      fail(new Error(xml.responseText))
+    }
+  }
+  xml.send()
+}
