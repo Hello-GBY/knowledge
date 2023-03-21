@@ -1107,3 +1107,53 @@ function render_(template, data) {
  })
  return computed
 }
+
+// 33 实现一个对象的 flatten 方法
+// 定义全局参数，递归
+const obj = {
+  a: {
+         b: 1,
+         c: 2,
+         d: {e: 5}
+     },
+  b: [1, 3, {a: 2, b: 3}],
+  c: 3
+ }
+ 
+ flatten(obj) 
+ // 结果返回如下
+ // {
+ //  'a.b': 1,
+ //  'a.c': 2,
+ //  'a.d.e': 5,
+ //  'b[0]': 1,
+ //  'b[1]': 3,
+ //  'b[2].a': 2,
+ //  'b[2].b': 3
+ //   c: 3
+ // }
+ function flatten(obj) {
+  let res = {};
+
+  function b(cur, key) {
+    if(typeof cur !== 'object') {
+      return res[key] = cur
+    }
+
+    let isArray = Array.isArray(cur);
+
+    for (const k in cur) {
+      if (Object.hasOwnProperty.call(cur, k)) {
+        if(isArray) {
+          b(cur[k], `${key}[${k}]`)
+        }else{
+          b(cur[k], `${key}${k}${typeof cur[k] == 'object' ? '.' : ''}`)
+        }
+      }
+    }
+  }
+
+  b(obj, '')
+  return res
+}
+ 
