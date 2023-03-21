@@ -1033,6 +1033,7 @@ loop(total, index);
 
 // 31.
 // 题目描述:JSON 格式的虚拟 Dom 怎么转换成真实 Dom
+// 主要是 document 的 属性  createElement setAttribute  appendChild
 {
   tag: 'DIV',
   attrs:{
@@ -1090,4 +1091,19 @@ function render(vnode) {
   }
 
   return dom
+}
+
+// 32实现模板字符串解析功能
+let template = '我是{{name}}，年龄{{age}}，性别{{sex}}';
+let data = {
+  name: '姓名',
+  age: 18
+}
+render(template, data); // 我是姓名，年龄18，性别undefined
+
+function render_(template, data) {
+ let computed = template.replace(/\{\{\w+\}\}/g, function(match, value){
+    return data[value]
+ })
+ return computed
 }
