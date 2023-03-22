@@ -1268,3 +1268,31 @@ function treeToList(data){
     }
   }
 }
+
+// 36 大数相加
+let a = "9007199254740991";
+let b = "1234567899999999999";
+
+function add(a ,b){
+   //...
+}
+
+function add(a, b){
+  let maxLength = Math.max(a, b)
+
+  a = a.padStart(maxLength, 0)
+  b = b.padStart(maxLength, 0)
+  
+  let f = 0 // 进位
+  let sum = ''
+  for (let index = maxLength -1 ; index >= 0; index--) {
+    t = parseInt(a[i]) + parseInt(b[i]) + f // 14
+    f = Math.floor(t / 10)
+    sum = t % 10 + sum
+  }
+
+  if(f !== 0){
+    sum = '' + f + sum;
+  }
+  return sum
+}
