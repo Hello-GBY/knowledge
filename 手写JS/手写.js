@@ -1156,4 +1156,59 @@ const obj = {
   b(obj, '')
   return res
 }
- 
+
+// 34 列表转成树形结构
+ [
+  {
+      id: 1,
+      text: '节点1',
+      parentId: 0 //这里用0表示为顶级节点
+  },
+  {
+      id: 2,
+      text: '节点1_1',
+      parentId: 1 //通过这个字段来确定子父级
+  }
+  ...
+]
+
+转成
+[
+  {
+      id: 1,
+      text: '节点1',
+      parentId: 0,
+      children: [
+          {
+              id:2,
+              text: '节点1_1',
+              parentId:1
+          }
+      ]
+  }
+]
+// 
+function listToTree(data) {
+  let temp = {}
+  let res = []
+
+  data.forEach(item => {
+    temp[item.id] = item;
+  })
+
+  for(let id in temp) {
+    let value = temp[id];
+    let parentId = value.parentId;
+
+    if(parentId !== 0) {
+      if(!temp[parentId].children) {
+        temp[parentId].children = []
+      }
+      temp[parentId].children.push(value)
+    } else {
+      res.push(value)
+    }
+  }
+
+  return res
+}
