@@ -495,8 +495,6 @@ let curriedSum = curry(sum);
 
 alert(curriedSum(1)(2)); // 3
 
-
-
 // 冒泡排序--时间复杂度 n^2
 // 相邻的交换 将最大的挪动到最后了
 function bubbleSort(arr) {
