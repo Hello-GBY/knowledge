@@ -43,13 +43,28 @@ function validPalindrome(str) {
 
 ```js
 function wordDictionary() {
-   this.words = []
+   this.words = {}
 }
 
 wordDictionary.prototype.addWord(str) {
-  this.words.push(str)
+  if(!this.words[str.length]) {
+    this.words[str.length] = [str]
+  }else {
+    this.words[str.length].push(str)
+  }
 }
 
-wordDictionary.prototype.
+wordDictionary.prototype.search(str) {
+  let arr = this.words[str.length]
+
+  if(str.indexOf('.') > -1){
+    let reg = new RegExp(str)
+    return arr.some( str=> {
+        return reg.test(item)
+    })
+  }
+
+  return arr && arr.includes(str)
+}
 
 ```
