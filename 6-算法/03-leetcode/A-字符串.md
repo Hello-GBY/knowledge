@@ -74,3 +74,49 @@
 遍历的时候 判断是不是map中已经存在 并且 rk的值小于等于 get 的下标值
  每次都 对比 max
  每次都 存放 set
+
+
+# 最长回文子串
+
+```js
+ var longestPalindrome = function(s) {
+    if(s.length < 2) return s
+    let len = s.length;
+    let dp = Array.from({length: len},() => new Array(len))
+    for(let i =0; i < len; i++) {
+        dp[i][i] = true
+    }
+    let res = s[0] 
+    let i = 1
+    while(i < len) {
+        let j = 0
+        while(j < i) {
+            if(s[i] == s[j]) {
+                if(j+1 - (i-1) > 1) {
+                    dp[j][i] = dp[j+1][i-1]
+                }else {
+                    dp[j][i] = true
+                }
+            }else {
+                dp[j][i] = false
+            }
+            if(dp[j][i] && i - j + 1 > res.length) {
+                console.log( i,j )
+                res = s.slice(j, i+1)
+            }
+            j++
+        }
+        i++
+    }
+    console.log(dp)
+    return res
+ }
+
+ // 动态规划的思想
+ // s[i] === s[j]
+
+ // dp[i][j] = dp[i+1]dp[j-1]
+
+ //  j-1 -(i +1) > 0
+ //  j-i > 2
+```
