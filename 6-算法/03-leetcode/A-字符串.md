@@ -102,3 +102,22 @@
 
 // 给每个 ii 赋值为true
 
+// 先外层遍历 j 内部遍历 i
+dp[i][j]
+
+// s[i] 是否等于 s[j]
+
+if(i - j >= 3) => 需要注意
+dp[i][j] = dp[i+1][j-1]
+
+else dp[i][j] = true
+
+// 其中另一个需要注意的 就是 获取最长的子串
+
+if(dp[i][j] && i - j + 1 > res.length){
+      res = s.slice(i, j+1);
+}
+
+
+
+
