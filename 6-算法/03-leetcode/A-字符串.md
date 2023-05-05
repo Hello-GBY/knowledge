@@ -78,45 +78,27 @@
 
 # 最长回文子串
 
-```js
- var longestPalindrome = function(s) {
-    if(s.length < 2) return s
-    let len = s.length;
-    let dp = Array.from({length: len},() => new Array(len))
-    for(let i =0; i < len; i++) {
-        dp[i][i] = true
-    }
-    let res = s[0] 
-    let i = 1
-    while(i < len) {
-        let j = 0
-        while(j < i) {
-            if(s[i] == s[j]) {
-                if(j+1 - (i-1) > 1) {
-                    dp[j][i] = dp[j+1][i-1]
-                }else {
-                    dp[j][i] = true
-                }
-            }else {
-                dp[j][i] = false
-            }
-            if(dp[j][i] && i - j + 1 > res.length) {
-                console.log( i,j )
-                res = s.slice(j, i+1)
-            }
-            j++
-        }
-        i++
-    }
-    console.log(dp)
-    return res
- }
+给你一个字符串 s，找到 s 中最长的回文子串。
 
- // 动态规划的思想
- // s[i] === s[j]
+如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。
 
- // dp[i][j] = dp[i+1]dp[j-1]
+ 
 
- //  j-1 -(i +1) > 0
- //  j-i > 2
-```
+示例 1：
+
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+示例 2：
+
+输入：s = "cbbd"
+输出："bb"
+
+链接：https://leetcode.cn/problems/longest-palindromic-substring
+
+> 思路：用动态规划的思想
+
+// 先创建二维矩阵数组
+
+// 给每个 ii 赋值为true
+
