@@ -4,7 +4,7 @@ dp[i][j];
 (j) => m;
 
 function a(n, m) {
-  let dp = Array.from({ length: n }, new Array(m););
+  let dp = Array.from({ length: n }, () => new Array(m));
 
   let num = 0;
   let target = false;
