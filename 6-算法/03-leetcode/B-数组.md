@@ -13,36 +13,25 @@ j = 0
 
 思路就是 双指针 加 反向 遍历
 
-# 项目
-[-4, -1, -1, 0, 1, 2]
+// 定义 左右指针 和游标m len1 +len2 -1
 
-let target = 0
-
-let i = 1,
-    j = nums.length -1
-
-```js
-function computer(nums) {
-
-  // 定义指针
-  let i , j
-  // 外层循环定义 target
-  let target = 0
-
-  for :  < nums.length
-
-  // while(i < j)
-
- if (v > 0) {
-  j--
- }else if(v<0) {
-  i++
- }else {
-  
- }
+// 定义外层循环 => 条件 j < 0 || i < 0
+// if nums1[i] > nums2[j]
+//    nums1[m] = nums1[i];  i++
+// else nums1[m] = nums1[i]; j++
+// m--
+// 返回 nums1
 
 
+#  删除有序数组中的重复项
+输入：nums = [0,0,1,1,1,2,2,3,3,4]
+输出：5, nums = [0,1,2,3,4]
 
-  
-}
-```
+思路：
+双指针
+
+定义下标 初始值都是 1
+
+// 为了 nums[j] !== nums[j-1]
+// 
+
