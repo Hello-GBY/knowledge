@@ -1330,3 +1330,28 @@ Promise.myAll = function (promiseArr) {
     });
   });
 };
+
+
+// 并发控制
+function promiseLimit(promiseArr, limit) {
+  let result = []
+  let len = promiseArr.length
+  for(let i = 0; i < limit -1; i++) {
+    startPromise(i) 
+  }
+  let i = 0
+  function startPromise (i) {
+    i++
+    let _promise = promiseArr.shift()
+    _promise().then(res => {
+      result.push(res)
+      startPromise()
+    }, (rej) => {
+      result.push(rej)
+      startPromise()
+    })
+  }
+
+
+  return new Promise()
+}
