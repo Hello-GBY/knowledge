@@ -634,8 +634,9 @@ function throttle(fn, delay) {
   return () => {
     if (!flag) return;
     flag = false;
+    let that = this
     timer = setTimeout(() => {
-      fn();
+      fn().apply(that)
       flag = true;
     }, delay);
   };
@@ -1296,3 +1297,36 @@ function add(a, b){
   }
   return sum
 }
+
+
+// promise all
+let promise1 = new Promise(function (resolve) {
+  resolve(1);
+});
+let promise2 = new Promise(function (resolve) {
+  resolve(2);
+});
+let promise3 = new Promise(function (resolve) {
+  resolve(3);
+});
+
+let promiseAll = Promise.all([promise1, promise2, promise3]);
+promiseAll.then(function (res) {
+  console.log(res);
+});
+
+Promise.myAll = function (promiseArr) {
+  return new Promise((resolve, rej) => {
+    let arr = [];
+    let len = 0;
+    promiseAll.forEach((pro, index) => {
+      pro.then((res) => {
+        len++;
+        arr[index] = res;
+        if (len == promiseAll.length) {
+          resolve(arr);
+        }
+      });
+    });
+  });
+};
