@@ -68,4 +68,9 @@ else
 
 // 思路：左右指针 left 用于记录排序的, 不要考虑零
 
+let left = 0, right = 0;
+// while(right < n) {
+//   if(nums[right] != 0) 
+//    转换 [nums[i], nums[j]] = [nums[j], nums[i]]
 
+}
