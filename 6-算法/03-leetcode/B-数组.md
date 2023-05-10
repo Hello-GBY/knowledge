@@ -35,3 +35,23 @@ j = 0
 // 为了 nums[j] !== nums[j-1]
 // 
 
+
+# 35. 搜索插入位置
+// 请必须使用时间复杂度为 O(log n) 的算法。
+
+思路： 二分查找
+定义左右指针，定义返回值默认等于 nums.length
+
+循环 条件 while(left <= right)
+
+找到中位数 mid = Math.floor((right - left) / 2) + left
+
+if(target <= nums[mid]) 
+    right = mid -1
+    ans = mid
+else 
+    left = mid + 1
+
+返回 mid
+
+
