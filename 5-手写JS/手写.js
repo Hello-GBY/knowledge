@@ -634,8 +634,9 @@ function throttle(fn, delay) {
   return () => {
     if (!flag) return;
     flag = false;
+    let that = this
     timer = setTimeout(() => {
-      fn();
+      fn().apply(that)
       flag = true;
     }, delay);
   };
@@ -1295,4 +1296,62 @@ function add(a, b){
     sum = '' + f + sum;
   }
   return sum
+}
+
+
+// promise all
+let promise1 = new Promise(function (resolve) {
+  resolve(1);
+});
+let promise2 = new Promise(function (resolve) {
+  resolve(2);
+});
+let promise3 = new Promise(function (resolve) {
+  resolve(3);
+});
+
+let promiseAll = Promise.all([promise1, promise2, promise3]);
+promiseAll.then(function (res) {
+  console.log(res);
+});
+
+Promise.myAll = function (promiseArr) {
+  return new Promise((resolve, rej) => {
+    let arr = [];
+    let len = 0;
+    promiseAll.forEach((pro, index) => {
+      pro.then((res) => {
+        len++;
+        arr[index] = res;
+        if (len == promiseAll.length) {
+          resolve(arr);
+        }
+      });
+    });
+  });
+};
+
+
+// 并发控制
+function promiseLimit(promiseArr, limit) {
+  let result = []
+  let len = promiseArr.length
+  for(let i = 0; i < limit -1; i++) {
+    startPromise(i) 
+  }
+  let i = 0
+  function startPromise (i) {
+    i++
+    let _promise = promiseArr.shift()
+    _promise().then(res => {
+      result.push(res)
+      startPromise()
+    }, (rej) => {
+      result.push(rej)
+      startPromise()
+    })
+  }
+
+
+  return new Promise()
 }

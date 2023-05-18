@@ -75,6 +75,55 @@
  每次都 对比 max
  每次都 存放 set
 
+
+# 最长回文子串
+
+给你一个字符串 s，找到 s 中最长的回文子串。
+
+如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。
+
+ 
+
+示例 1：
+
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+示例 2：
+
+输入：s = "cbbd"
+输出："bb"
+
+链接：https://leetcode.cn/problems/longest-palindromic-substring
+
+> 思路：用动态规划的思想
+
+// 先创建二维矩阵数组
+
+// 给每个 ii 赋值为true
+
+// 先外层遍历 j 内部遍历 i
+dp[i][j]
+
+// s[i] 是否等于 s[j]
+
+if(i - j >= 3) => 需要注意
+dp[i][j] = dp[i+1][j-1]
+
+else dp[i][j] = true
+
+// 其中另一个需要注意的 就是 获取最长的子串
+
+if(dp[i][j] && i - j + 1 > res.length){
+      res = s.slice(i, j+1);
+}
+
+
+
+
+
+ 每次都 存放 set
+
  
 
 
