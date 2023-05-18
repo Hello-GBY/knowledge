@@ -131,24 +131,3 @@ if(dp[i][j] && i - j + 1 > res.length){
 
 
 
- # 最大子数组相加
-输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
-输出：6
-解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
-
-思路：贪心
-      初始 时 maxvalue =  curSum = nums[0]
-      计算之前和 + 当前值 和 当前值对比 判断是不是要抛弃之前得和
-      然后用对比出来得值和 maxvalue 进行对比
-
-```js
-let maxValue = curSum = nums[0]
-
-nums.forEach((cur, i) => {
-if(i == 0) return
-      curSum = Math.max(cur, curSum + cur)
-      maxValue = Math.max(maxValue, curSum)
-})
-return maxValue
-```
-# 
