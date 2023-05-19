@@ -93,10 +93,21 @@ let left = 0, right = nums.length - 1, ans = nums.length;
 先判断数组长度 空 返回【-1，-1】
 二分查找【查找 最 left的情况】
    while(left < right) 
-    mid = Math.fool()
+    mid = Math.floor((right + left) / 2)
     mid < target left = mid + 1  mid == target : right = mid  .....
    left 当前值 是不是等于 -1
 
 二分查找【查找位置 最right的情况】
    while(left < right) 
+   [这块是有 + 1]
+    mid = 
+    mid < target left = mid + 1  mid == target : left = mid  .....
+
+
+
+
+
+
+
+
 
