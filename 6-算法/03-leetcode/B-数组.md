@@ -144,3 +144,15 @@ right--
 当 left、right
 while(left < right && nums[right] == nums[right - 1]) right--;
 while(left < right && nums[left] == nums[left + 1]) left++;
+
+
+# 跳跃游戏
+输入：nums = [2,3,1,1,4]
+输出：true
+解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
+
+思路：
+遍历数组
+返回true的情况 判断： i + nums[i] 和 nums.length -1 的大小
+
+当 i > jump 的时候 返回false
