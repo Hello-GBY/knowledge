@@ -155,3 +155,42 @@ right--
 当 left、right
 while(left < right && nums[right] == nums[right - 1]) right--;
 while(left < right && nums[left] == nums[left + 1]) left++;
+
+
+# 全排列
+输入：nums = [1,2,3]
+输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+思路：
+    采用dfs 的深度遍历 ， 把他想成一棵树
+
+    不断递归 和 for循环  递归出口 就是 数组长度
+    ...
+    function dfs (nth) {
+      // 定义出口
+      if len == nums.length
+          res.push(cur.slice())
+
+      for
+          if(v[i] !== 1) {
+            cur.push(nums[i])
+            v[i] =1
+            dsf(nth+1)
+            cur.pop()
+            v[i] = 0
+          }
+    }
+    dfs(0)
+while(left < right && nums[left] == nums[left + 1]) left++;
+
+
+# 跳跃游戏
+输入：nums = [2,3,1,1,4]
+输出：true
+解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
+
+思路：
+遍历数组
+返回true的情况 判断： i + nums[i] 和 nums.length -1 的大小
+
+当 i > jump 的时候 返回false
