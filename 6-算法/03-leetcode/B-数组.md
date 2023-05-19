@@ -111,3 +111,47 @@ let left = 0, right = nums.length - 1, ans = nums.length;
 
 
 
+ # 最大子数组相加
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
+
+思路：贪心
+      初始 时 maxvalue =  curSum = nums[0]
+      计算之前和 + 当前值 和 当前值对比 判断是不是要抛弃之前得和
+      然后用对比出来得值和 maxvalue 进行对比
+
+```js
+let maxValue = curSum = nums[0]
+
+nums.forEach((cur, i) => {
+if(i == 0) return
+      curSum = Math.max(cur, curSum + cur)
+      maxValue = Math.max(maxValue, curSum)
+})
+return maxValue
+```
+# 三数之和
+
+输入：nums = [-1,0,1,2,-1,-4]
+输出：[[-1,-1,2],[-1,0,1]]
+
+
+思路：就是三指针
+
+先排序，外层循环定义 target 
+内层循环 左右指针
+
+left = target + 1
+right = nums.length -1
+
+不断的：
+left++ 
+right--
+
+去重处理
+第一层循环中
+当 target 与 target -1 相等时跳过
+当 left、right
+while(left < right && nums[right] == nums[right - 1]) right--;
+while(left < right && nums[left] == nums[left + 1]) left++;
