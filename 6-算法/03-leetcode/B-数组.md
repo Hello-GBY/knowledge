@@ -93,12 +93,23 @@ let left = 0, right = nums.length - 1, ans = nums.length;
 先判断数组长度 空 返回【-1，-1】
 二分查找【查找 最 left的情况】
    while(left < right) 
-    mid = Math.fool()
+    mid = Math.floor((right + left) / 2)
     mid < target left = mid + 1  mid == target : right = mid  .....
    left 当前值 是不是等于 -1
 
 二分查找【查找位置 最right的情况】
    while(left < right) 
+   [这块是有 + 1]
+    mid = 
+    mid < target left = mid + 1  mid == target : left = mid  .....
+
+
+
+
+
+
+
+
 
  # 最大子数组相加
 输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
@@ -144,15 +155,3 @@ right--
 当 left、right
 while(left < right && nums[right] == nums[right - 1]) right--;
 while(left < right && nums[left] == nums[left + 1]) left++;
-
-
-# 跳跃游戏
-输入：nums = [2,3,1,1,4]
-输出：true
-解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
-
-思路：
-遍历数组
-返回true的情况 判断： i + nums[i] 和 nums.length -1 的大小
-
-当 i > jump 的时候 返回false
