@@ -214,4 +214,35 @@ while(left < right && nums[left] == nums[left + 1]) left++;
 
     max变量用来计算 是否当前是最大值 max = Math.max(dp[i] , max)
 
-    
+
+# 合并区间
+输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+输出：[[1,6],[8,10],[15,18]]
+解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6]
+
+输入[[1,4],[0,4]]
+输出[[0,4]]
+预期结果[[0,4]]
+
+思路：
+先排序
+res= []
+let pre = intervals[0];
+遍历数组
+
+需要有一个当前合并数组作为变量，也就是每次 合并不了的时候  放入到res中
+
+for let i = i ; XXXXX
+  // 可以合并
+  if(pre[1] >= cur[0]){
+            pre[1] = Math.max(pre[1], cur[1]);
+  } else {
+      // 每次遇见不能合并的记录
+      res.push(pre);
+      pre = cur;
+  }
+
+
+res.push(pre)
+
+return res
