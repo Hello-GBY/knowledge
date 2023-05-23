@@ -11,3 +11,21 @@
    cur.next = list1 == null ? list2 : list1
 
 return head.next
+
+# 删除排序链表中的重复元素
+输入：head = [1,1,2]
+输出：[1,2]
+
+思路： 创建临时指针 用来接收 head
+
+var deleteDuplicates = function(head) {
+    let list = head
+    while(list && list.next) {
+        if(list.val === list.next.val){
+            list.next = list.next.next
+        }else {
+            list = list.next
+        }
+    }
+    return head
+};
