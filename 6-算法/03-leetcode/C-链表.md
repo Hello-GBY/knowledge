@@ -29,3 +29,17 @@ var deleteDuplicates = function(head) {
     }
     return head
 };
+
+
+# 反转链表
+
+// 创建临时值 let pre = next
+
+// 循环 当前指针 while(cur)
+
+  //  将当前指针的next 缓存 let next = cur.next
+  //  将当前指针的 next 指向 pre  cur.next = pre
+  //  修改 pre 值 为 当前值 为了下一次指针指向  pre = cur
+  //  修改cur值为 下一个  cur = next
+
+return pre
