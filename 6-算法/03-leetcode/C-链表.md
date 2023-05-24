@@ -43,3 +43,17 @@ var deleteDuplicates = function(head) {
   //  修改cur值为 下一个  cur = next
 
 return pre
+
+# 相交链表
+两种思路：
+第一种：用set 。add 存放数据 
+      另一个 set。has
+
+第二种： 我走过你走的路
+      a+b+c
+      c+b+a
+    while(pa !== pb)
+      pa =  pa == null ? headB : pa.next
+      pb 同理
+
+    return pa
