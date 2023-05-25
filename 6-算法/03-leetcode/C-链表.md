@@ -86,3 +86,17 @@ while(cur.next) {
     cur = cur.next
   }
 }
+
+# 链表中倒数第k个节点
+    // 双指针
+    // 第一遍 遍历 确定好 双指针的 距离
+    // 第二遍 遍历到 fast 为 null
+    // 返回 slow
+
+    // 顺序查找
+    // 第一遍确定 length
+    // 第二遍 遍历到。 len - k 
+    // 返回 cur
+
+# 从尾到头打印链表
+  arr.unshift()
