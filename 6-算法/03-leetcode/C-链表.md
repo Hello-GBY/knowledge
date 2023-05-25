@@ -57,3 +57,19 @@ return pre
       pb 同理
 
     return pa
+
+# 环形链表判断
+思路： 第一种 添加 target
+  第二种 set
+  第三种 快慢指针
+      let a = head
+      let b = head.nex
+
+      while( a!=b ) {
+          if(b == bull || b.next == null) {
+            return false
+          }
+
+          b = b.next
+          a= a.next.next
+      }
