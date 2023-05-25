@@ -61,7 +61,7 @@ return pre
 # 环形链表判断
 思路： 第一种 添加 target
   第二种 set
-  第三种 快慢指针
+  ** 第三种 快慢指针 (快的走两步，慢的一步)
       let a = head
       let b = head.nex
 
@@ -73,3 +73,16 @@ return pre
           b = b.next
           a= a.next.next
       }
+
+# 移除链表元素
+// 需要创建前驱节点
+let duuy = new ListNode()
+duuy.next = head
+let cur = duuy
+while(cur.next) {
+  if(cur.next.val == val) {
+    cur.next = cur..next.next
+  } else {
+    cur = cur.next
+  }
+}
