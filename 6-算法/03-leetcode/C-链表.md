@@ -121,3 +121,11 @@ while(cur.next) {
 
 需要注意的细节挺多的
 
+# 删除链表的倒数第 N 个结点 
+双指针
+
+需要注意的 就是 
+
+slow.next = slow.next.next 这块 怎么更好的判断一下
+
+todo: 需要重新做一下
