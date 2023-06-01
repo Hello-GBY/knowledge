@@ -129,3 +129,22 @@ while(cur.next) {
 slow.next = slow.next.next 这块 怎么更好的判断一下
 
 todo: 需要重新做一下
+
+
+# 两两交换链表中的节点
+用迭代的方法
+创建虚拟节点
+
+将两个节点位置互换
+
+ const node1 = cur.next;
+const node2 = cur.next.next;
+  
+cur.next = node2;
+node1.next = node2.next;
+node2.next = node1;
+
+cur = node1;
+
+
+// 用递归的方法还需要在研究
