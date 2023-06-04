@@ -166,3 +166,12 @@ todo: 需要在做一遍
 遍历当前链表
 
 一个 small，一个big链表
+
+
+# LRU 缓存
+get
+put
+
+获取的时候更新
+
+put的时候 先set
