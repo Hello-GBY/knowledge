@@ -175,3 +175,18 @@ put
 获取的时候更新
 
 put的时候 先set
+
+# 二叉树展开为链表 
+二叉树展开为链表 
+
+先通过list 存放正常顺序的节点 root
+
+然后 在遍历 list 就能访问 root
+边遍历 修改的就是 root
+ for(let i  =1 ;i < list.length ; i++) {
+      let pre = list[i-1], cur = list[i]
+      pre.right = cur
+      pre.left = null
+  }
+
+todo: 还有其他做法 还需要在做一遍
