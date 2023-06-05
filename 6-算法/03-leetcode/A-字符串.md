@@ -135,7 +135,12 @@ if(dp[i][j] && i - j + 1 > res.length){
 # 剑指 Offer 05. 替换空格
 输入：s = "We are happy."
 输出："We%20are%20happy."
-可以使用
+
+可以使用 编码设置
+
+可以使用遍历
+
+可以使用 replace(/ /g, '%20')
 
 
 
