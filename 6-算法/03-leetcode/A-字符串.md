@@ -143,4 +143,12 @@ if(dp[i][j] && i - j + 1 > res.length){
 可以使用 replace(/ /g, '%20')
 
 
+# 有效的字母异位词
+输入: s = "anagram", t = "nagaram"
+输出: true
+// 先判断length
 
+// 然后
+用数组存放 
+
+主要是 str.codePointAt(index) 来获取值
