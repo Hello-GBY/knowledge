@@ -22,3 +22,17 @@ function drawRect() {
   // 创建一个圆、
 }
 drawRect();
+
+function drawText() {
+  // ctx.beginPath();
+
+  ctx.font = "12px";
+  ctx.strokeStyle = "#000";
+  ctx.fillStyle = "#000";
+
+  ctx.fillText("Hello World", 0, 50);
+  ctx.strokeText("Big smile!", 10, 90);
+
+  // ctx.closePath();
+}
+drawText();
