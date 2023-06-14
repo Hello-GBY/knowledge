@@ -177,3 +177,26 @@ i % t < r -1
 列是：r-1
 
 
+# 17. 电话号码的字母组合
+输入：digits = "23"
+输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
+边遍历树 边剪枝
+
+这道题 需要 遍历过的 不继续遍历 可以用 下标来进行定位
+
+
+<!-- 经典回溯算法 -->
+回溯算法基本框架
+function backtrack(数据 ， list) {
+     if 满足结束条件:
+        result.add(路径)
+        return
+
+      
+      for 选择 in 选择列表:
+            <!-- 按需判断条件 判断是不是已经标识过 就 return -->
+            数据.push()
+            backtrack(数据 ， list)
+            数据.pop()
+}
