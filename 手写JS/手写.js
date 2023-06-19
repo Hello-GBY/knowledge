@@ -1296,3 +1296,20 @@ function add(a, b){
   }
   return sum
 }
+
+
+// canvas 画矩形
+function drawRect(id) {
+  let canvas = document.querySelector(id);
+
+  canvas.fillStyle = 'red';  
+
+  canvas.moveTo(0, 0);
+  canvas.lineTo(200, 0);
+  canvas.lineTo(200, 200);  
+  canvas.lineTo(0, 200);
+  canvas.closePath();
+  canvas.fill();
+}
+
+
