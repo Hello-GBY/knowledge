@@ -83,3 +83,50 @@ var subsetsWithDup = function(nums) {
       return;
   }
 ```
+
+# 39. 组合总和
+输入：candidates = [2,3,6,7], target = 7
+输出：[[2,2,3],[7]]
+解释：
+2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
+7 也是一个候选， 7 = 7 。
+仅有这两种组合。
+
+>candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
+
+思路： 因为可以重复选取，所以每次递归的时候，start 传入 i，而不是 i+1
+
+需要注意的是，这里的 candidates 是无重复元素的，如果有重复元素，需要先去重，再进行回溯。
+
+然后针对判断条件 if(trackSum > target) return; 进行剪枝 防止一直递归下去
+  
+```js
+var combinationSum = function(candidates, target) {
+  let res = [];
+  let track = [];
+  let trackSum = 0;
+
+
+  function backtrack(start, nums, target) {
+
+      if(trackSum == target) {
+          res.push(track.slice())
+      }
+
+      if(trackSum > target) {
+          return
+      }
+
+      for(let i = start; i < nums.length ; i++){
+          trackSum += nums[i]
+          track.push(nums[i])
+          backtrack(i, nums, target)
+          trackSum -= nums[i]
+          track.pop()
+      }
+  }
+
+  backtrack(0, candidates, target);
+  return res
+};
+```
