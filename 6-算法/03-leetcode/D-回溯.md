@@ -130,3 +130,22 @@ var combinationSum = function(candidates, target) {
   return res
 };
 ```
+
+
+# 组合总和 II
+输入: candidates = [10,1,2,7,6,1,5], target = 8,
+输出:
+[
+[1,1,6],
+[1,2,5],
+[1,7],
+[2,6]
+]
+给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+
+candidates 中的每个数字在每个组合中只能使用 一次 。
+
+针对于有重复 就需要排序
+就需要判断 if(i > start && nums[i] === nums[i-1]) continue;
+
+不让重复用 就需要 i+1
