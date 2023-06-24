@@ -61,3 +61,25 @@ var subsetsWithDup = function(nums) {
 };
   
 ```
+
+
+#  组合
+题目： 从 n 个数中选 k 个数
+给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
+
+你可以按 任何顺序 返回答案。
+
+** 也是子集问题  但是只记录 k 个数的子集 **
+  
+反映到代码上，只需要稍改 base case，控制算法仅仅收集第 k 层节点的值即可：
+
+
+
+```js
+  // base case
+  if (k === track.length) {
+      // 遍历到了第 k 层，收集当前节点的值
+      res.push([...track]);
+      return;
+  }
+```
