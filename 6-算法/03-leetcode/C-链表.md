@@ -190,3 +190,15 @@ put的时候 先set
   }
 
 todo: 还有其他做法 还需要在做一遍
+
+
+# 合并有序链表
+就是 创建虚拟节点 
+let dummy = new ListNode()
+let cur = dummy
+
+
+然后循环两个链表
+
+最后 需要 判断  if(l1) cur.next = l1
+              if(l2) cur.next = l2  
