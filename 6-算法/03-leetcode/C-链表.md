@@ -44,6 +44,22 @@ var deleteDuplicates = function(head) {
 
 return pre
 
+```js
+var reverseList = function(head) {
+     return resvers(head, null)
+};
+
+
+function resvers(cur, pre) {
+    if(cur == null) return pre;
+
+    let temp = cur.next;
+    cur.next = pre;
+
+    return resvers(temp, cur)
+}
+```
+
 # 相交链表
 两种思路：
 第一种：用set 。add 存放数据 
@@ -223,6 +239,10 @@ let cur = dummy
 
 
 # 链表中间节点
+
 # 删除链表的倒数第 N 个结点
 都是快慢指针 进行处理
 
+
+
+// lru 算法
