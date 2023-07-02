@@ -30,7 +30,24 @@ var deleteDuplicates = function(head) {
     return head
 };
 
+```js
+var deleteDuplicates = function(head) {
+    let slow = head
+    let fast = head
+    if (head === null) return null;
+    
+    while(fast && fast.next) {
+        if(fast.val !== fast.next.val) {
+            slow.next = fast.next
+            slow = slow.next
+        }
 
+        fast = fast.next
+    }
+    slow.next = null
+    return head
+};
+```
 # 反转链表
 
 // 创建临时值 let pre = next
