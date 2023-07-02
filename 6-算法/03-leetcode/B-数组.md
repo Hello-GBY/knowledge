@@ -287,3 +287,24 @@ function  sort (left, right) {
 
     return left // 注意要返回的是 left
 }
+
+
+# 数组移除元素
+用双指针的方式
+用快慢指针及计算长度的方式，即可完成排序
+
+输入：nums = [0,1,2,2,3,0,4,2], val = 2
+输出：5, nums = [0,1,4,0,3]
+
+var removeElement = function(nums, val) {
+    let slow = 0, fast = 0;
+
+    while(fast < nums.length) {
+        if(nums[fast] !== val) {
+            nums[slow] = nums[fast]
+            slow++
+        }
+        fast++
+    }
+    return slow
+}
