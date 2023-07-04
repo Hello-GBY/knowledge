@@ -215,3 +215,24 @@ function backtrack(数据 ， list) {
 2. 左括号 和 右括号 的数量 相等
 
 在 push 的 之前进行判断
+
+
+# 最长回文子串
+第二种解法 可以用双指针进行遍历
+
+```
+function 
+      for(let i = 0; i < s.length; i++){
+      let s1 = sortStr(s, i, i)
+      let s2 = sortStr(s, i, i+1)
+      let s = s1.length > s2.length ? s1 : s2
+      res = res.length > s.length ? res : s
+
+function sortStr(s, l, r){
+      while(l >= 0 && r < s.length && s[l] === s[r]){
+            l--;
+            r++;
+      }
+      return s.slice(l+1, r)
+}
+```
