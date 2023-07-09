@@ -76,4 +76,5 @@ function traverse(root) {
     return root
 }
 ```
-```
+
+// 后续遍历注意要最后的返回值 一定要是root，并且递归当前函数就行
