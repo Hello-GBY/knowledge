@@ -59,3 +59,21 @@ function traverse(root) {
     depth++
   }
   ```
+
+# 反转二叉树
+前序遍历； 后续遍历都可以
+
+后续遍历 代码量少 但是不好理解
+前序遍历 代码量多 但是比较直观
+
+```js
+function traverse(root) {
+    if(!root) return
+    let left = traverse(root.left)
+    let right = traverse(root.right)
+    root.left = right
+    root.right = left
+    return root
+}
+```
+```
