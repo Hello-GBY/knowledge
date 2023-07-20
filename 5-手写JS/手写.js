@@ -1351,9 +1351,12 @@ Promise.myAll = function (promiseArr) {
 function promiseLimit(promiseArr, limit) {
   let result = []
   let len = promiseArr.length
-  for(let i = 0; i < limit -1; i++) {
+  for(let i = 0; i < 2; i++) {
     startPromise(i) 
   }
+  // 10
+  
+  // 1 {2} 2 {5} 3 
   let i = 0
   function startPromise (i) {
     i++
@@ -1369,4 +1372,35 @@ function promiseLimit(promiseArr, limit) {
 
 
   return new Promise()
+}
+
+
+
+Promise1.all([new Promise((res) => {
+  setTimeout(() => {
+    res('1111')
+  }, 1000)
+}), pr, pr]).then(res => {
+  // res => []
+  // res => reject
+})
+
+Promise.myAll_ = function (arr) {
+  // arr
+  let resArr = []
+  return new Promise((resolve, rej) => {
+    for (let index = 0; index < arr.length; index++) {
+      const _promise = array[index];
+      _promise.then((res) => {
+        resArr[index] = res
+        if(res.length == arr.length) {
+          resolve(resArr)
+        }
+      }).catch((rej) => {
+        resArr = rej
+        rej(resArr)
+        break;
+      })
+    }
+  })
 }
