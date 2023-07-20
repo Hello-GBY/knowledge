@@ -28,3 +28,9 @@ async 是异步下载 下载完成之后 就立马执行 如果页面没有解�
 
 过程中
 
+### meta标签  
+
+分为 name / http-equiv / charset
+
+
+name  可选参数 keyword[s] , description, author, renderer, robots, viewpoint
