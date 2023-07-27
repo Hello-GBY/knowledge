@@ -63,3 +63,13 @@ watch 是当需要在数据变化时执行异步或开销较大的操作时
 ## 视频 简单易懂
 
 https://www.bilibili.com/video/BV1Ph41117hq/?p=1&share_medium=android&share_plat=android&share_source=COPY&share_tag=s_i&timestamp=1625124020&unique_k=uREcvY&vd_source=ddef9fd7630bde2b6a6618c696f66d5a
+
+key 相同 只会更改老节点的 text 或者 children 属性
+
+头头对比
+尾尾对比
+头尾对比
+尾头对比
+顺序对比
+
+假设： 头尾对比成功 就把头部的节点移动到尾部
