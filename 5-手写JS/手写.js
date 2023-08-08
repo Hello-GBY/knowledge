@@ -831,7 +831,7 @@ function flat(arr, num = 1) {
 
   arr.forEach((e, i) => {
     if (Array.isArray(e)) {
-      hasArray = true;
+      ifHasArray = true;
       flatArr = flatArr.concat(e);
     } else {
       flatArr.push(e);
@@ -1404,3 +1404,4 @@ Promise.myAll_ = function (arr) {
     }
   })
 }
+
