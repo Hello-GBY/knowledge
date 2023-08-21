@@ -82,3 +82,15 @@ dummy ： 当需要前驱节点的时候
    用 map
    打标记
 5. 反转链表
+
+# 栈、队列
+
+例题：有效括号
+输入: "(]"
+输出: false
+
+function queue(str) {
+let stack = [];
+let arr = str.split('');
+
+}
