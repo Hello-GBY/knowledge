@@ -26,3 +26,26 @@ router.beforeEach((to, from, next) => {
   const { need_login = false } = to.meta;
 ```
 ## 页面权限控制
+静态路由，动态路由
+```js
+
+```
+
+
+
+# BFF
+用node 进行一层处理 
+一般用 Rpc 协议传输
+
+
+
+
+
+
+
+
+
+
+
+
+
