@@ -27,3 +27,21 @@ console.log(curriedJoin(1, 2, 3)); // '1_2_3'
 console.log(curriedJoin(1)(2, 4)); // '1_2_3'
 
 console.log(curriedJoin(1)(0)(2)); // '1_2_3'
+
+// 柯里化函数
+// 这种写法是正确，
+/**
+ * @param { (...args: any[]) => any } fn
+ * @returns { (...args: any[]) => any }
+ */
+function curry(fn) {
+  // your code here
+  let argsLen = fn.length;
+  return function curried(...args) {
+    if (args.length >= argsLen) {
+      return fn.apply(this, args);
+    } else {
+      return curried.bind(this, ...args);
+    }
+  };
+}
